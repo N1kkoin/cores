@@ -3,6 +3,8 @@
 body{
     margin: 0;
     padding: 0;
+    font-family: "Barlow", sans-serif;
+
 }
 
 .color-picker-container {
@@ -69,7 +71,8 @@ input[type="text"] {
     margin-top: 10px; /* Espaçamento superior */
     cursor: pointer; /* Cursor de mão ao passar o mouse */
     transition: background-color 0.3s ease; /* Transição suave da cor de fundo */
-    
+    font-family: "Barlow", sans-serif;
+    width: 100%;
 }
 
 .remove-btn:hover {
