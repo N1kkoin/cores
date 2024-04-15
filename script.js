@@ -20,10 +20,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
         const rgbColor = hslToRgb(hue / 360, saturation / 100, lightness / 100);
         const hexColor = rgbToHex(rgbColor[0], rgbColor[1], rgbColor[2]);
+        const cmykColor = rgbToCmyk(rgbColor[0], rgbColor[1], rgbColor[2]);
+
 
         hslInput.value = color;
         hexInput.value = hexColor;
         rgbInput.value = `rgb(${rgbColor.join(', ')})`;
+        cmykInput.value = `cmyk(${cmykColor.join(', ')})`;
+
     }
 
     function hslToRgb(h, s, l){
@@ -53,6 +57,25 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function rgbToHex(r, g, b) {
         return `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)}`;
+    }
+
+    
+    function rgbToCmyk(r, g, b) {
+        const c = 1 - (r / 255);
+        const m = 1 - (g / 255);
+        const y = 1 - (b / 255);
+        const k = Math.min(c, m, y);
+        
+        if (k === 1) {
+            return [0, 0, 0, 1];
+        }
+        
+        return [
+            (c - k) / (1 - k),
+            (m - k) / (1 - k),
+            (y - k) / (1 - k),
+            k
+        ].map(value => Math.round(value * 100));
     }
 
     hueSlider.addEventListener("input", updateColor);
