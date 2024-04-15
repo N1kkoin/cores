@@ -1,17 +1,21 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 
-  <head>
+<head>
     <meta charset="UTF-8">
     <title>Seleção de Cor</title>
     <link rel="stylesheet" href="style.css">
-  </head>
+</head>
 
-  <body>
+<body>
     <div class="color-picker-container">
-      <div class="color-preview"></div>
+        <div class="color-preview"></div>
+        <!-- Botão para salvar a cor -->
+        <button id="save-btn">Salvar Cor</button>
 
-      <div class="sliders">
+    </div>
+
+    <div class="sliders">
         <label for="hue">Hue:</label>
         <input type="range" id="hue" min="0" max="360" value="0">
 
@@ -20,9 +24,9 @@
 
         <label for="lightness">Lightness:</label>
         <input type="range" id="lightness" min="0" max="100" value="50">
-      </div>
+    </div>
 
-      <div class="color-codes">
+    <div class="color-codes">
 
         <label for="hex">HEX:</label>
         <input type="text" id="hex" readonly>
@@ -36,9 +40,15 @@
         <label for="hsl">HSL:</label>
         <input type="text" id="hsl" readonly>
 
-      </div>
+    </div>
+
+    <!-- Lista de cores salvas -->
+    <div class="saved-colors">
+        <h2>Saved Colors</h2>
+        <div id="saved-colors"></div>
+    </div>
     </div>
     <script src="script.js"></script>
-  </body>
+</body>
 
 </html>
