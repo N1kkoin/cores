@@ -65,6 +65,10 @@ input[type="text"] {
     gap: 10px;
 }
 
+.saved-colors{
+    width: 100%;
+}
+
 #save-btn{
          background-color: #5abdff;
         color: #fff;
