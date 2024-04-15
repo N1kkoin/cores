@@ -2,9 +2,9 @@
 <html lang="pt-br">
 
 <head>
-    
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Seleção de Cor</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
@@ -12,40 +12,46 @@
 </head>
 
 <body>
-    <div class="color-picker-container">
-        <div class="color-preview"></div>
-        <!-- Botão para salvar a cor -->
-        <button id="save-btn">Salvar Cor</button>
+    <div class="cores-e-sliders">
+        <div class="color-picker-container">
+            <div class="color-preview"></div>
+            <!-- Botão para salvar a cor -->
+            <button id="save-btn">Salvar Cor</button>
+        </div>
+        <div>
+            <div class="sliders">
+                <div class="wrapper">
+                    <label for="hue">Hue:</label>
+                    <input type="range" id="hue" min="0" max="360" value="0">
+                </div>
 
+                <div class="wrapper">
+                    <label for="saturation">Saturation:</label>
+                    <input type="range" id="saturation" min="0" max="100" value="100">
+                </div>
+
+                <div class="wrapper">
+                    <label for="lightness">Brilho</label>
+                    <input type="range" id="lightness" min="0" max="100" value="50">
+                </div>
+            </div>
+            <div class="color-codes">
+
+                <label for="hex">HEX:</label>
+                <input type="text" id="hex" readonly>
+
+                <label for="rgb">RGB:</label>
+                <input type="text" id="rgb" readonly>
+
+                <label for="rgb">CMYK:</label>
+                <input type="text" id="cmyk" readonly>
+
+                <label for="hsl">HSL:</label>
+                <input type="text" id="hsl" readonly>
+
+            </div>
+        </div>
     </div>
-
-    <div class="sliders">
-        <label for="hue">Hue:</label>
-        <input type="range" id="hue" min="0" max="360" value="0">
-
-        <label for="saturation">Saturation:</label>
-        <input type="range" id="saturation" min="0" max="100" value="100">
-
-        <label for="lightness">Lightness:</label>
-        <input type="range" id="lightness" min="0" max="100" value="50">
-    </div>
-
-    <div class="color-codes">
-
-        <label for="hex">HEX:</label>
-        <input type="text" id="hex" readonly>
-
-        <label for="rgb">RGB:</label>
-        <input type="text" id="rgb" readonly>
-
-        <label for="rgb">CMYK:</label>
-        <input type="text" id="cmyk" readonly>
-
-        <label for="hsl">HSL:</label>
-        <input type="text" id="hsl" readonly>
-
-    </div>
-
     <!-- Lista de cores salvas -->
     <div class="saved-colors">
         <h2>Saved Colors</h2>

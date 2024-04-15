@@ -1,6 +1,6 @@
 @import url(https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap);
 
-body{
+body {
     margin: 0;
     padding: 0;
     font-family: "Barlow", sans-serif;
@@ -11,14 +11,16 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
+    box-sizing: border-box;
+    flex: 1;
 }
 
 
 .sliders {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    margin-bottom: 20px;
+    justify-content: center;
+    gap: 20px;
 
 }
 
@@ -41,15 +43,16 @@ input[type="text"] {
 
 .color-preview {
     width: 100%;
-    height: 200px;
     margin-bottom: 10px;
+    flex: 1;
+
 }
 
-.cores-individuais{
+.cores-individuais {
     background-color: #f4f3ff;
     padding: 10px;
     border-radius: 5px;
-    
+
 }
 
 .codigo-cores-salvas {
@@ -62,21 +65,38 @@ input[type="text"] {
     gap: 10px;
 }
 
+#save-btn{
+         background-color: #5abdff;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        padding: 8px 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        font-family: "Barlow", sans-serif;
+        width: 100%;
+}
+
+    
+#save-btn:hover {
+    background-color: rgb(48, 95, 182);
+}
+
 .remove-btn {
-    background-color: #ff5a5f; /* Cor de fundo */
-    color: #fff; /* Cor do texto */
-    border: none; /* Remove a borda */
-    border-radius: 4px; /* Arredonda as bordas */
-    padding: 8px 16px; /* Espaçamento interno */
-    margin-top: 10px; /* Espaçamento superior */
-    cursor: pointer; /* Cursor de mão ao passar o mouse */
-    transition: background-color 0.3s ease; /* Transição suave da cor de fundo */
+    background-color: #ff5a5f;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
     font-family: "Barlow", sans-serif;
     width: 100%;
 }
 
 .remove-btn:hover {
-    background-color: #e44a4c; /* Cor de fundo ao passar o mouse */
+    background-color: #e44a4c;
 }
 
 
@@ -85,5 +105,81 @@ input[type="text"] {
     height: 30px;
     display: inline-block;
     border-radius: 5px;
+}
+
+.cores-e-sliders{
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    width: calc(100% - 20px);
+}
+
+
+/* sliders design -------------------------------------------------------------------------------*/
+
+
+.wrapper {
+    position: relative;
+    height: 20rem;
+    width: 3rem;
 
 }
+
+.wrapper::before,
+.wrapper::after {
+    display: block;
+    position: absolute;
+    z-index: 99;
+    color: #000000;
+    width: 100%;
+    text-align: center;
+    font-size: 1.5rem;
+    line-height: 1;
+    padding: 0.75rem 0;
+    pointer-events: none;
+}
+
+.wrapper::before {
+    content: "+";
+}
+
+.wrapper::after {
+    content: "−";
+    bottom: 0;
+}
+
+.wrapper input[type="range"] {
+    -webkit-appearance: none;
+    background-color: rgba(0, 0, 0, 0.2);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: 0;
+    padding: 0;
+    width: 20rem;
+    height: 3.5rem;
+    transform: translate(-50%, -50%) rotate(-90deg);
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: row-resize;
+}
+
+.wrapper input[type="range"][step] {
+    background-color: transparent;
+    background-image: repeating-linear-gradient(to right, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2) calc(12.5% - 1px), #05051a 12.5%);
+}
+
+.wrapper input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 0;
+    box-shadow: -20rem 0 0 20rem rgba(0, 0, 0, 0.2);
+}
+
+.wrapper input[type="range"]::-moz-range-thumb {
+    border: none;
+    width: 0;
+    box-shadow: -20rem 0 0 20rem rgba(0, 0, 0, 0.2);
+}
+
+
+
