@@ -103,9 +103,8 @@ document.addEventListener("DOMContentLoaded", function () {
      function updateSavedColorsList() {
         savedColorsList.innerHTML = "";
 
-        savedColors.forEach((color, index) => {
+        savedColors.reverse().forEach((color, index) => {
             const listItem = document.createElement("div");
-            const removeButton = document.createElement("button");
             
             listItem.innerHTML = `
             <div class="cores-individuais">
@@ -117,7 +116,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     <span>HSL: ${color.hsl} </span>
                     
                 </div>
-                <button class="remove-btn">Remove</button>
+                <button class="remove-btn"><i class="fa-solid fa-trash"></i></button>
             </div>
         `;
             

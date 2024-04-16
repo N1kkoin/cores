@@ -1,7 +1,7 @@
 @import url(https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap);
 
 body {
-    margin: 0;
+    margin: 10px;
     padding: 0;
     font-family: "Barlow", sans-serif;
 
@@ -18,16 +18,14 @@ body {
 
 .sliders {
     display: flex;
-    align-items: center;
     justify-content: center;
+    flex-direction: column;
     gap: 20px;
 
 }
 
-input[type="range"] {
-    max-width: 500px;
-    width: 100%;
-    margin-bottom: 10px;
+.sliders label{
+    font-weight: 500;
 }
 
 .color-codes {
@@ -43,8 +41,8 @@ input[type="text"] {
 
 .color-preview {
     width: 100%;
-    margin-bottom: 10px;
     flex: 1;
+    border-radius: 10px;
 
 }
 
@@ -58,37 +56,38 @@ input[type="text"] {
 .codigo-cores-salvas {
     display: flex;
     flex-direction: column;
+    min-width: 200px;
 }
 
 #saved-colors {
     display: flex;
+    flex-wrap: wrap;
     gap: 10px;
 }
 
 .saved-colors{
-    width: 100%;
+   max-width: 960px;
+   margin: 0 auto;
+
 }
 
 #save-btn{
          background-color: #5abdff;
         color: #fff;
         border: none;
-        border-radius: 4px;
+        border-radius: 0 0 10px 10px;
         padding: 8px 16px;
         cursor: pointer;
         transition: background-color 0.3s ease;
         font-family: "Barlow", sans-serif;
         width: 100%;
-}
+        border: 1px solid #5abdff;
 
-    
-#save-btn:hover {
-    background-color: rgb(48, 95, 182);
 }
 
 .remove-btn {
-    background-color: #ff5a5f;
-    color: #fff;
+    background-color: white;
+    color: black;
     border: none;
     border-radius: 4px;
     padding: 8px 16px;
@@ -101,6 +100,7 @@ input[type="text"] {
 
 .remove-btn:hover {
     background-color: #e44a4c;
+    color: white;
 }
 
 
@@ -115,7 +115,14 @@ input[type="text"] {
     display: flex;
     flex-direction: row;
     gap: 15px;
-    width: calc(100% - 20px);
+    max-width: 1500px;
+    margin: 0 auto;
+}
+
+button{
+    font-size: 16px;
+    text-transform: uppercase;
+
 }
 
 
@@ -124,8 +131,7 @@ input[type="text"] {
 
 .wrapper {
     position: relative;
-    height: 20rem;
-    width: 3rem;
+    height: 3rem; /* Altura do slider horizontal */
 
 }
 
@@ -135,7 +141,7 @@ input[type="text"] {
     position: absolute;
     z-index: 99;
     color: #000000;
-    width: 100%;
+    width: 20%; /* Largura para cada pseudo-elemento */
     text-align: center;
     font-size: 1.5rem;
     line-height: 1;
@@ -145,11 +151,13 @@ input[type="text"] {
 
 .wrapper::before {
     content: "+";
+    right: 0; /* Posiciona à direita */
+
 }
 
 .wrapper::after {
     content: "−";
-    bottom: 0;
+    left: 0;
 }
 
 .wrapper input[type="range"] {
@@ -157,15 +165,15 @@ input[type="text"] {
     background-color: rgba(0, 0, 0, 0.2);
     position: absolute;
     top: 50%;
-    left: 50%;
+    left: 0; /* Alinhe o slider à esquerda */
     margin: 0;
     padding: 0;
-    width: 20rem;
+    width: 100%; /* Ocupa a largura total do elemento pai */
     height: 3.5rem;
-    transform: translate(-50%, -50%) rotate(-90deg);
+    transform: translateY(-50%); /* Movimenta o slider na vertical */
     border-radius: 6px;
     overflow: hidden;
-    cursor: row-resize;
+    cursor: col-resize;
 }
 
 .wrapper input[type="range"][step] {
@@ -188,20 +196,19 @@ input[type="text"] {
 
 
 .color-codes {
-    font-family: Arial, sans-serif;
     background-color: #f3f4f6;
-    border: 1px solid #ccc;
-    border-radius: 8px;
+    border: 1px solid #5abdff;
+    border-radius: 10px 10px 0 0;
     padding: 20px;
     margin: 20px auto;
     margin-bottom: 0;
+    min-width: 350px;
 }
 
 .color-codes label {
     display: block;
     font-weight: bold;
     margin-bottom: 5px;
-    color: #333;
 }
 
 .color-codes input[type="text"] {
