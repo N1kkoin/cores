@@ -4,10 +4,15 @@ body {
     margin: 10px;
     padding: 0;
     font-family: "Barlow", sans-serif;
-
+    border-top: 2px solid;
+    border-image: linear-gradient(to right, #ff0000, #ffe601, #007bff);
+    border-image-slice: 1;
+    margin: 0;
 }
 
 .color-picker-container {
+    padding-top: 10px;
+
     display: flex;
     flex-direction: column;
     align-items: center;
