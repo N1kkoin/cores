@@ -224,3 +224,15 @@ button{
     background-color: #f9f9f9;
     cursor: not-allowed;
 }
+
+
+@media (max-width: 700px){
+    .cores-e-sliders{
+        flex-direction: column;
+    }
+
+    .color-picker-container {
+        min-height: 300px;
+    
+    }
+}
