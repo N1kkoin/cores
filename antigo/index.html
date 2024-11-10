@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seleção de Cor</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</head>
+
+<body>
+    <div class="cores-e-sliders">
+        <div class="color-picker-container">
+            <div class="color-preview"></div>
+
+        </div>
+        <div>
+
+            <div class="sliders">
+                <label for="hue">Tom</label>
+                <div class="wrapper">
+                    <input type="range" id="hue" min="0" max="360" value="0">
+                </div>
+
+                <label for="saturation">Saturação</label>
+                <div class="wrapper">
+                    <input type="range" id="saturation" min="0" max="100" value="100">
+                </div>
+
+                <label for="lightness">Brilho</label>
+                <div class="wrapper">
+                    <input type="range" id="lightness" min="0" max="100" value="50">
+                </div>
+
+            </div>
+            <div class="color-codes">
+                <label for="hex">HEX:</label>
+                <input type="text" id="hex" readonly>
+
+                <label for="rgb">RGB:</label>
+                <input type="text" id="rgb" readonly>
+
+                <label for="rgb">CMYK:</label>
+                <input type="text" id="cmyk" readonly>
+
+                <label for="hsl">HSL:</label>
+                <input type="text" id="hsl" readonly>
+            </div>
+
+            <!-- Botão para salvar a cor -->
+            <button id="save-btn"><i class="fa-solid fa-floppy-disk"></i></button>
+
+        </div>
+    </div>
+    <!-- Lista de cores salvas -->
+    <div class="saved-colors">
+        <h2>Cores salvas <i style="font-size:large;" class="fa-solid fa-cookie-bite"></i></h2>
+        <div id="saved-colors"></div>
+    </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
