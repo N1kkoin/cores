@@ -13,8 +13,8 @@
     <div id="game">
 
         <div class="doisblocos_cores">
-        <div id="target-color"></div>
-        <div id="paint-area"></div>
+            <div id="target-color"></div>
+            <div id="paint-area"></div>
         </div>
 
         <div id="progress">
@@ -25,163 +25,28 @@
             </p>
         </div>
 
-        <div class="slider-container" id="hue-container">
-            <label for="hue-slider">Cor (Hue): <span id="hue-value">0</span></label>
-            <input type="range" id="hue-slider" class="slider" min="0" max="360" value="0">
+        <div id="sliders-container">
+
+            <div class="slider-container" id="hue-container">
+                <label for="hue-slider">Cor (Hue): <span id="hue-value">0</span></label>
+                <input type="range" id="hue-slider" class="slider" min="0" max="360" value="0">
+            </div>
+
+            <div class="slider-container" id="saturation-container">
+                <label for="saturation-slider">Saturação: <span id="saturation-value">100</span>%</label>
+                <input type="range" id="saturation-slider" class="slider" min="0" max="100" value="100">
+            </div>
+
+            <div class="slider-container" id="lightness-container">
+                <label for="lightness-slider">Luminosidade: <span id="lightness-value">50</span>%</label>
+                <input type="range" id="lightness-slider" class="slider" min="0" max="100" value="50">
+            </div>
+
         </div>
 
-        <div class="slider-container" id="saturation-container">
-            <label for="saturation-slider">Saturação: <span id="saturation-value">100</span>%</label>
-            <input type="range" id="saturation-slider" class="slider" min="0" max="100" value="100">
-        </div>
-
-        <div class="slider-container" id="lightness-container">
-            <label for="lightness-slider">Luminosidade: <span id="lightness-value">50</span>%</label>
-            <input type="range" id="lightness-slider" class="slider" min="0" max="100" value="50">
-        </div>
-
-        
-       
     </div>
 
-    <script>
-        const targetColorElement = document.getElementById("target-color");
-        const paintArea = document.getElementById("paint-area");
-        const similarityElement = document.getElementById("similarity");
-        const hitsElement = document.getElementById("hits");
-        const attemptsElement = document.getElementById("attempts");
-
-        const hueSlider = document.getElementById("hue-slider");
-        const saturationSlider = document.getElementById("saturation-slider");
-        const lightnessSlider = document.getElementById("lightness-slider");
-
-        const hueValueLabel = document.getElementById("hue-value");
-        const saturationValueLabel = document.getElementById("saturation-value");
-        const lightnessValueLabel = document.getElementById("lightness-value");
-
-        let targetColor, currentColor;
-        let hits = 0;
-        let attempts = 0;
-        let movementCount = 0; // Contador de movimentos nas barras
-
-        // Atualiza os valores das barras em tempo real
-        hueSlider.addEventListener("input", () => {
-            hueValueLabel.textContent = hueSlider.value;
-            updateColor(); // Atualiza a cor em tempo real
-            checkSimilarity(); // Atualiza a similaridade
-        });
-
-        saturationSlider.addEventListener("input", () => {
-            saturationValueLabel.textContent = saturationSlider.value;
-            updateColor(); // Atualiza a cor em tempo real
-            checkSimilarity(); // Atualiza a similaridade
-        });
-
-        lightnessSlider.addEventListener("input", () => {
-            lightnessValueLabel.textContent = lightnessSlider.value;
-            updateColor(); // Atualiza a cor em tempo real
-            checkSimilarity(); // Atualiza a similaridade
-        });
-
-        // Função para calcular a cor a partir dos sliders de HSL
-        function updateColor() {
-            const hue = hueSlider.value;
-            const saturation = saturationSlider.value / 100; // Converter para valor entre 0 e 1
-            const lightness = lightnessSlider.value / 100; // Converter para valor entre 0 e 1
-
-            // Atualiza currentColor
-            currentColor = hslToRgb(hue, saturation, lightness);
-            paintArea.style.backgroundColor = `rgb(${currentColor.r}, ${currentColor.g}, ${currentColor.b})`;
-        }
-
-        // Função para ser chamada quando as barras forem "soltas" (change)
-        function onSliderChange() {
-            movementCount++; // Incrementa o movimento
-            if (movementCount >= 3) {
-                attempts++; // Conta a tentativa a cada 3 movimentos
-                attemptsElement.textContent = attempts;
-                movementCount = 0; // Reseta o contador de movimentos
-            }
-        }
-
-        // Adiciona o evento 'change' para cada barra de cor
-        hueSlider.addEventListener("change", onSliderChange);
-        saturationSlider.addEventListener("change", onSliderChange);
-        lightnessSlider.addEventListener("change", onSliderChange);
-
-        // Converte HSL para RGB
-        function hslToRgb(h, s, l) {
-            h = h / 360;
-            s = Math.max(0, Math.min(1, s));
-            l = Math.max(0, Math.min(1, l));
-
-            const r = hslToRgbHelper(l, s, h + 1 / 3);
-            const g = hslToRgbHelper(l, s, h);
-            const b = hslToRgbHelper(l, s, h - 1 / 3);
-            return { r: r * 255, g: g * 255, b: b * 255 };
-        }
-
-        function hslToRgbHelper(l, s, h) {
-            h = (h + 1) % 1;
-            if (s == 0) return l; // Achou o valor de luz
-            const p = l * (1 - s);
-            const q = l * (1 + s * Math.cos(h * 2 * Math.PI));
-            return q;
-        }
-
-        // Função para calcular similaridade entre duas cores RGB
-        function getSimilarity(color1, color2) {
-            const diffR = color1.r - color2.r;
-            const diffG = color1.g - color2.g;
-            const diffB = color1.b - color2.b;
-            return 100 - Math.sqrt(diffR * diffR + diffG * diffG + diffB * diffB) / 4.42;
-        }
-
-        // Função para verificar a similaridade e reiniciar o jogo se necessário
-        function checkSimilarity() {
-            const similarity = getSimilarity(targetColor, currentColor);
-            similarityElement.textContent = `${similarity.toFixed(2)}%`;
-
-            if (similarity >= 95) {
-                hits++;
-                hitsElement.textContent = hits;
-                setNewTargetColor(); // Atualiza o alvo e mistura as barras
-            }
-        }
-
-        // Função para gerar cor alvo aleatória
-        function setNewTargetColor() {
-            const randomHue = Math.floor(Math.random() * 360);
-            targetColor = hslToRgb(randomHue, 1, 0.5); // Saturação 100%, Luminosidade 50%
-            targetColorElement.style.backgroundColor = `rgb(${targetColor.r}, ${targetColor.g}, ${targetColor.b})`;
-
-            currentColor = { r: 255, g: 255, b: 255 }; // Cor inicial (branco)
-            paintArea.style.backgroundColor = `rgb(${currentColor.r}, ${currentColor.g}, ${currentColor.b})`;
-
-            movementCount = 0; // Reseta o contador de movimentos
-
-            // Reposiciona as barras aleatoriamente
-            randomizeSliders();
-        }
-
-        // Função para definir posições aleatórias nos sliders
-        function randomizeSliders() {
-            hueSlider.value = Math.floor(Math.random() * 360); // Hue varia de 0 a 360
-            saturationSlider.value = Math.floor(Math.random() * 100); // Saturação varia de 0 a 100
-            lightnessSlider.value = Math.floor(Math.random() * 100); // Luminosidade varia de 0 a 100
-
-            // Atualiza os valores na interface
-            hueValueLabel.textContent = hueSlider.value;
-            saturationValueLabel.textContent = saturationSlider.value;
-            lightnessValueLabel.textContent = lightnessSlider.value;
-
-            // Atualiza a similaridade após reposicionar os sliders
-            updateSimilarity();
-        }
-
-
-        // Começar o jogo
-        setNewTargetColor();
+    <script src="script.js">
     </script>
 </body>
 
