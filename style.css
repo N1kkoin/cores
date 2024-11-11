@@ -61,6 +61,11 @@ label, p {
     margin-top: 20px;
 }
 
+#progress p{
+display: flex;
+justify-content: center;
+gap: 50px;
+}
 
 .doisblocos_cores {
     display: flex;
