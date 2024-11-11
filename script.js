@@ -113,12 +113,19 @@ function getSimilarity(color1, color2) {
 function checkSimilarity() {
     const similarity = getSimilarity(targetColor, currentColor);
     similarityElement.textContent = `${similarity.toFixed(2)}%`;
+    
+    // Exibe o elemento apenas se a similaridade for 90% ou mais
+    if (similarity >= 90) {
+        similarityElement.parentElement.style.display = "inline"; // Exibe o elemento
+    } else {
+        similarityElement.parentElement.style.display = "none"; // Esconde o elemento
+    }
 
     if (similarity >= 95) {
         hits++;
         hitsElement.textContent = hits;
         setNewTargetColor(); // Atualiza o alvo e mistura as barras
-    }
+    } 
 }
 
 // Função para gerar cor alvo aleatória
