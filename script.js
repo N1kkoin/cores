@@ -111,16 +111,49 @@ function getSimilarity(color1, color2) {
 
 const colorList = document.getElementById("color-list");
 
+// Função para converter HSL em HEX
+function hslToHex(h, s, l) {
+    s /= 100;
+    l /= 100;
+
+    let c = (1 - Math.abs(2 * l - 1)) * s;
+    let x = c * (1 - Math.abs((h / 60) % 2 - 1));
+    let m = l - c / 2;
+    let r = 0, g = 0, b = 0;
+
+    if (0 <= h && h < 60) {
+        r = c; g = x; b = 0;
+    } else if (60 <= h && h < 120) {
+        r = x; g = c; b = 0;
+    } else if (120 <= h && h < 180) {
+        r = 0; g = c; b = x;
+    } else if (180 <= h && h < 240) {
+        r = 0; g = x; b = c;
+    } else if (240 <= h && h < 300) {
+        r = x; g = 0; b = c;
+    } else if (300 <= h && h < 360) {
+        r = c; g = 0; b = x;
+    }
+
+    r = Math.round((r + m) * 255);
+    g = Math.round((g + m) * 255);
+    b = Math.round((b + m) * 255);
+
+    return `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)}`;
+}
+
 // Função para salvar a cor acertada e exibir na lista
 function saveColor(color) {
     const listItem = document.createElement("li");
-    listItem.style.backgroundColor = `hsl(${color.hue}, ${color.saturation}%, ${color.lightness}%)`;
-    listItem.textContent = `HSL(${color.hue}, ${color.saturation}%, ${color.lightness}%)`;
+    const hexColor = hslToHex(color.hue, color.saturation, color.lightness);
+    listItem.style.backgroundColor = hexColor;
+    listItem.textContent = hexColor; // Mostra o código HEX em vez de HSL
     listItem.style.color = color.lightness > 50 ? "black" : "white"; // Ajusta a cor do texto para contraste
     
     // Adiciona o item no início da lista
     colorList.prepend(listItem);
 }
+
 
 // Função para verificar a similaridade e reiniciar o jogo se necessário
 function checkSimilarity() {

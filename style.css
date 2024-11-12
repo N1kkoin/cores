@@ -159,5 +159,6 @@ input[type="range"]::-moz-range-thumb {
     padding: 10px;
     border-radius: 5px;
     border: 2px solid black;
+    text-transform: uppercase;
 }
 
