@@ -82,6 +82,7 @@ body {
     justify-content: center;
     gap: 30px;
     margin-top: 0px;
+    font-size: large;
 }
 
 .doisblocos_cores {
@@ -98,8 +99,6 @@ input[type="range"] {
     border: 2px solid black;
     box-sizing: border-box;
 }
-
-
 
 /* Estilização do "thumb" do slider */
 input[type="range"]::-webkit-slider-thumb {
@@ -125,13 +124,14 @@ input[type="range"]::-moz-range-thumb {
 
 .slider-container label {
     
-    color: transparent;
+  font-size: small;
 }
 
 .slider-container {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    margin-bottom: 10px;
 
 }
 
@@ -139,12 +139,8 @@ input[type="range"]::-moz-range-thumb {
     margin-bottom: 0;
 }
 
-#saved-colors h2 {
-    margin-top: 20px;
-
-}
-
 #color-list {
+    margin-top: 40px;
     display: flex;
     gap: 5px;
     justify-content: flex-start;
@@ -162,4 +158,6 @@ input[type="range"]::-moz-range-thumb {
     text-wrap: nowrap;
     padding: 10px;
     border-radius: 5px;
+    border: 2px solid black;
 }
+
