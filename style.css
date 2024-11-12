@@ -1,10 +1,33 @@
 @import url('https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap');
 
+/* Personaliza a barra de rolagem inteira */
+::-webkit-scrollbar {
+    height: 12px;
+}
+
+/* Personaliza o fundo da barra de rolagem */
+::-webkit-scrollbar-track {
+    background: white;
+    border-radius: 5px;
+}
+
+/* Personaliza a barra de rolagem em si */
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.219);
+    border: 2px solid white;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.5);
+
+}
+
 body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
     background-color: white;
     margin: 0;
     padding: 20px;
@@ -13,7 +36,6 @@ body {
 }
 
 #game {
-    text-align: center;
     width: 100%;
     max-width: 1200px;
 }
@@ -118,4 +140,26 @@ input[type="range"]::-moz-range-thumb {
 
 .slider-container:last-of-type {
     margin-bottom: 0;
+}
+
+#saved-colors h2{
+ margin-top: 40px;
+ font-size: xx-large;
+}
+
+#color-list {
+    display: flex;
+gap: 5px;
+    justify-content: flex-start;
+    width: 100%;
+    list-style-type: none; /* Remove a bolinha dos itens da lista */
+    padding: 0; /* Remove o padding padrão da lista */
+    overflow-x: scroll;
+    padding-bottom: 3px;
+}
+
+#color-list li {
+    text-wrap: nowrap;
+    padding: 10px;
+    border-radius: 5px;
 }

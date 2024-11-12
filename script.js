@@ -109,6 +109,19 @@ function getSimilarity(color1, color2) {
     return Math.max(0, similarity); // Garante que a similaridade não fique negativa
 }
 
+const colorList = document.getElementById("color-list");
+
+// Função para salvar a cor acertada e exibir na lista
+function saveColor(color) {
+    const listItem = document.createElement("li");
+    listItem.style.backgroundColor = `hsl(${color.hue}, ${color.saturation}%, ${color.lightness}%)`;
+    listItem.textContent = `HSL(${color.hue}, ${color.saturation}%, ${color.lightness}%)`;
+    listItem.style.color = color.lightness > 50 ? "black" : "white"; // Ajusta a cor do texto para contraste
+    
+    // Adiciona o item no início da lista
+    colorList.prepend(listItem);
+}
+
 // Função para verificar a similaridade e reiniciar o jogo se necessário
 function checkSimilarity() {
     const similarity = getSimilarity(targetColor, currentColor);
@@ -124,6 +137,10 @@ function checkSimilarity() {
     if (similarity >= 95) {
         hits++;
         hitsElement.textContent = hits;
+
+        // Salva a cor acertada na lista
+        saveColor(currentColor);
+        
         setNewTargetColor(); // Atualiza o alvo e mistura as barras
     } 
 }
