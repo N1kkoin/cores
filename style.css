@@ -27,10 +27,9 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
     background-color: white;
     margin: 0;
-    padding: 20px;
+    padding: 0;
     box-sizing: border-box;
     font-family: "Titillium Web", sans-serif;
 }
@@ -38,25 +37,30 @@ body {
 #game {
     width: 100%;
     max-width: 1200px;
+    padding: 20px;
+    padding-top: 0;
+    box-sizing: border-box;
 }
 
 #target-color,
 #paint-area {
     width: 100%;
-    height: 15vh;
+    height: 20vh;
     margin-bottom: 10px;
 }
 
 #target-color {
-    border-radius: 10px 0 0 10px;
+    border-radius: 0 0 0 10px;
     border: 2px solid black;
     border-right: 0;
+    border-top: 0;
 }
 
 #paint-area {
-    border-radius: 0 10px 10px 0;
+    border-radius: 0 0 10px 0;
     border: 2px solid black;
     border-left: 0;
+    border-top: 0;
 }
 
 #target-color {
@@ -67,26 +71,17 @@ body {
     background-color: #fff;
 }
 
-.slider-container {
-    margin: 10px 0;
-}
-
-label, p {
-    font-size: 1.5rem;
-}
 
 .slider {
     width: 100%;
+    margin-bottom: 0px;
 }
 
-#progress {
-    margin-top: 20px;
-}
-
-#progress p{
-display: flex;
-justify-content: center;
-gap: 50px;
+#progress p {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 0px;
 }
 
 .doisblocos_cores {
@@ -97,10 +92,11 @@ input[type="range"] {
     -webkit-appearance: none;
     appearance: none;
     width: 100%;
-    height: 15px;
+    height: 13px;
     border-radius: 5px;
     outline: none;
     border: 2px solid black;
+    box-sizing: border-box;
 }
 
 
@@ -128,34 +124,38 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .slider-container label {
-    margin-bottom: 5px;
+    
+    color: transparent;
 }
 
 .slider-container {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin-bottom: 20px;
+
 }
 
 .slider-container:last-of-type {
     margin-bottom: 0;
 }
 
-#saved-colors h2{
- margin-top: 40px;
- font-size: xx-large;
+#saved-colors h2 {
+    margin-top: 20px;
+
 }
 
 #color-list {
     display: flex;
-gap: 5px;
+    gap: 5px;
     justify-content: flex-start;
     width: 100%;
-    list-style-type: none; /* Remove a bolinha dos itens da lista */
-    padding: 0; /* Remove o padding padrão da lista */
+    list-style-type: none;
+    /* Remove a bolinha dos itens da lista */
+    padding: 0;
+    /* Remove o padding padrão da lista */
     overflow-x: scroll;
     padding-bottom: 3px;
+    margin-bottom: 0;
 }
 
 #color-list li {
