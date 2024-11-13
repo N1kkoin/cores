@@ -101,7 +101,7 @@ function getSimilarity(color1, color2) {
     const lightnessDiff = Math.abs(color1.lightness - color2.lightness);
 
     // Garantir que a diferença de Hue esteja dentro do intervalo de 0 a 180 graus (circular)
-    const hueDistance = Math.min(hueDiff, 360 - hueDiff); 
+    const hueDistance = Math.min(hueDiff, 360 - hueDiff);
 
     // Similaridade calculada com base nas diferenças, considerando um valor máximo de 100
     const similarity = 100 - (hueDistance + saturationDiff + lightnessDiff) / 3;
@@ -109,7 +109,7 @@ function getSimilarity(color1, color2) {
     return Math.max(0, similarity); // Garante que a similaridade não fique negativa
 }
 
-const colorList = document.getElementById("color-list");
+
 
 // Função para converter HSL em HEX
 function hslToHex(h, s, l) {
@@ -142,6 +142,26 @@ function hslToHex(h, s, l) {
     return `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)}`;
 }
 
+let isExpanded = false; // Variável de controle para o estado expandido
+const maxVisibleItems = 2; // Limite de itens visíveis
+const colorList = document.getElementById("color-list");
+const showMoreButton = document.getElementById("show-more");
+
+// Função para alternar a exibição dos itens extras
+showMoreButton.addEventListener("click", () => {
+    const allItems = colorList.querySelectorAll("li");
+    isExpanded = !isExpanded; // Alterna o estado de expansão
+
+    allItems.forEach((item, index) => {
+        if (index >= maxVisibleItems) {
+            item.classList.toggle("hidden", !isExpanded);
+        }
+    });
+
+    // Alterna o ícone do botão entre "+" e "-"
+    showMoreButton.innerHTML = isExpanded ? "<i class='fa-solid fa-minus'></i>" : "<i class='fa-solid fa-plus'></i>";
+});
+
 // Função para salvar a cor acertada e exibir na lista
 function saveColor(color) {
     const listItem = document.createElement("li");
@@ -149,10 +169,10 @@ function saveColor(color) {
     listItem.style.backgroundColor = hexColor;
     listItem.textContent = hexColor; // Mostra o código HEX em vez de HSL
     listItem.style.color = color.lightness > 50 ? "black" : "white"; // Ajusta a cor do texto para contraste
-    
+
 
     // Função para copiar o texto e exibir "copiado"
-    listItem.addEventListener('click', function() {
+    listItem.addEventListener('click', function () {
         // Copia o texto para a área de transferência
         navigator.clipboard.writeText(hexColor).then(() => {
             // Temporariamente muda o texto para "copiado"
@@ -168,6 +188,18 @@ function saveColor(color) {
 
     // Adiciona o item no início da lista
     colorList.prepend(listItem);
+
+    // Controla a exibição do botão e a visibilidade dos itens
+    const items = colorList.querySelectorAll("li");
+    if (items.length > maxVisibleItems) {
+        items[maxVisibleItems].classList.add("hidden"); // Oculta o oitavo item e além
+        showMoreButton.style.display = "block"; // Mostra o botão "Ver mais"
+    }
+
+    // Se o estado estiver expandido, exibe todos os itens imediatamente
+    if (isExpanded) {
+        items.forEach(item => item.classList.remove("hidden"));
+    }
 }
 
 
@@ -175,7 +207,7 @@ function saveColor(color) {
 function checkSimilarity() {
     const similarity = getSimilarity(targetColor, currentColor);
     similarityElement.textContent = `${similarity.toFixed(2)}%`;
-    
+
     // Exibe o elemento apenas se a similaridade for 90% ou mais
     if (similarity >= 90) {
         similarityElement.parentElement.style.display = "inline"; // Exibe o elemento
@@ -189,9 +221,9 @@ function checkSimilarity() {
 
         // Salva a cor acertada na lista
         saveColor(currentColor);
-        
+
         setNewTargetColor(); // Atualiza o alvo e mistura as barras
-    } 
+    }
 }
 
 // Função para gerar cor alvo aleatória
