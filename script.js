@@ -16,6 +16,14 @@ let targetColor, currentColor;
 let hits = 0;
 let attempts = 0;
 let movementCount = 0; // Contador de movimentos nas barras
+let countdown; // Armazena o intervalo do temporizador
+let timeRemaining = 30; // Tempo inicial em segundos
+let targetColorChanges = 0; // Contador de mudanças da cor alvo
+
+const targetColorChangesElement = document.getElementById("target-color-changes");
+let timerElement = document.getElementById("timer");
+const colorList = document.getElementById("color-list");
+
 
 // Função para atualizar o background do slider de Hue com um gradiente arco-íris
 hueSlider.addEventListener('input', () => {
@@ -142,8 +150,7 @@ function hslToHex(h, s, l) {
     return `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)}`;
 }
 
-const colorList = document.getElementById("color-list");
-const showMoreButton = document.getElementById("show-more");
+
 
 // Função para salvar a cor acertada e exibir na lista
 function saveColor(color) {
@@ -195,8 +202,54 @@ function checkSimilarity() {
         saveColor(currentColor);
 
         setNewTargetColor(); // Atualiza o alvo e mistura as barras
+        resetTimer();
     }
 }
+
+// Função para atualizar o temporizador na tela
+function updateTimer() {
+    timerElement.textContent = `${timeRemaining}s`;
+}
+
+// Função para reiniciar o temporizador para 30 segundos
+function resetTimer() {
+    clearInterval(countdown); // Para o temporizador atual
+    timeRemaining = 30; // Reseta o tempo para 30 segundos
+    updateTimer(); // Atualiza o HTML
+    startCountdown(); // Inicia o novo temporizador
+}
+
+// Função para iniciar o temporizador e fazer a contagem regressiva
+function startCountdown() {
+    countdown = setInterval(() => {
+        timeRemaining--;
+        updateTimer();
+
+        // Se o tempo acabar, muda automaticamente a cor alvo e reseta o temporizador
+        if (timeRemaining <= 0) {
+            autoChangeTargetColor(); // Muda a cor automaticamente
+            resetTimer(); // Reinicia o tempo para outro ciclo de 30 segundos
+        }
+    }, 1000); // Atualiza a cada segundo
+}
+
+// Função para mudar a cor alvo automaticamente e contar a mudança
+function autoChangeTargetColor() {
+    setNewTargetColor();
+    resetTimer();
+    targetColorChanges++;
+    targetColorChangesElement.textContent = targetColorChanges;
+}
+
+// Chama esta função quando o usuário acertar para reiniciar o alvo e o temporizador
+function onUserHit() {
+    hits++; // Incrementa os acertos
+    hitsElement.textContent = hits;
+    saveColor(currentColor); // Salva a cor acertada
+    setNewTargetColor(); // Define uma nova cor alvo
+    resetTimer(); // Reinicia o temporizador
+}
+
 
 // Função para gerar cor alvo aleatória
 function setNewTargetColor() {
@@ -234,3 +287,4 @@ function randomizeSliders() {
 
 // Começar o jogo
 setNewTargetColor();
+startCountdown();

@@ -21,35 +21,39 @@
 
         <div id="progress">
             <p>
+                <span><i class="fa-regular fa-clock"></i> <span id="timer">30s</span></span> <!-- Temporizador -->
                 <span><i class="fa-solid fa-check"></i> <span id="hits">0</span></span>
                 <span><i class="fa-solid fa-repeat"></i> <span id="attempts">0</span></span>
+                <span><i class="fa-solid fa-xmark"></i> <span id="target-color-changes">0</span></span>
                 <span><i class="fas fa-equals"></i> <span id="similarity">0%</span></span>
+
+
             </p>
         </div>
 
         <div class="sliderselista">
-        <div id="sliders-container">
+            <div id="sliders-container">
 
-            <div class="slider-container" id="hue-container">
-                <label for="hue-slider"> <span id="hue-value">0</span></label>
-                <input type="range" id="hue-slider" class="slider" min="0" max="360" value="0">
+                <div class="slider-container" id="hue-container">
+                    <label for="hue-slider"> <span id="hue-value">0</span></label>
+                    <input type="range" id="hue-slider" class="slider" min="0" max="360" value="0">
+                </div>
+
+                <div class="slider-container" id="saturation-container">
+                    <label for="saturation-slider"><span id="saturation-value">100</span>%</label>
+                    <input type="range" id="saturation-slider" class="slider" min="0" max="100" value="100">
+                </div>
+
+                <div class="slider-container" id="lightness-container">
+                    <label for="lightness-slider"> <span id="lightness-value">50</span>%</label>
+                    <input type="range" id="lightness-slider" class="slider" min="0" max="100" value="50">
+                </div>
+
             </div>
-
-            <div class="slider-container" id="saturation-container">
-                <label for="saturation-slider"><span id="saturation-value">100</span>%</label>
-                <input type="range" id="saturation-slider" class="slider" min="0" max="100" value="100">
+            <div id="saved-colors">
+                <ul id="color-list"></ul>
             </div>
-
-            <div class="slider-container" id="lightness-container">
-                <label for="lightness-slider"> <span id="lightness-value">50</span>%</label>
-                <input type="range" id="lightness-slider" class="slider" min="0" max="100" value="50">
-            </div>
-
         </div>
-        <div id="saved-colors">
-            <ul id="color-list"></ul>
-        </div>
-    </div>
     </div>
 
     <script src="script.js">
