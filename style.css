@@ -200,6 +200,11 @@ input[type="range"]::-moz-range-thumb {
         overflow-x: hidden;
         justify-content: flex-start;
         box-sizing: border-box;
+      
+    }
+
+    #color-list li{
+        align-content: center;
     }
 
     #sliders-container {
