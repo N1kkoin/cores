@@ -53,24 +53,19 @@ hueSlider.addEventListener('input', () => {
     checkSimilarity(); // Verifica a similaridade sempre que o hue mudar
 });
 
-// Atualiza os valores das barras em tempo real
-hueSlider.addEventListener("input", () => {
-    hueValueLabel.textContent = hueSlider.value;
+// Função para atualizar o valor do slider e a cor
+function handleSliderInput(slider, label) {
+    label.textContent = slider.value; // Atualiza o valor do slider na label
     updateColor(); // Atualiza a cor em tempo real
     checkSimilarity(); // Verifica a similaridade
+}
+
+// Adiciona o evento 'input' para cada slider usando a função genérica
+[hueSlider, saturationSlider, lightnessSlider].forEach((slider, index) => {
+    const label = [hueValueLabel, saturationValueLabel, lightnessValueLabel][index];
+    slider.addEventListener("input", () => handleSliderInput(slider, label));
 });
 
-saturationSlider.addEventListener("input", () => {
-    saturationValueLabel.textContent = saturationSlider.value;
-    updateColor(); // Atualiza a cor em tempo real
-    checkSimilarity(); // Verifica a similaridade
-});
-
-lightnessSlider.addEventListener("input", () => {
-    lightnessValueLabel.textContent = lightnessSlider.value;
-    updateColor(); // Atualiza a cor em tempo real
-    checkSimilarity(); // Verifica a similaridade
-});
 
 // Função para atualizar a cor da área de pintura baseada no HSL dos sliders
 function updateColor() {
