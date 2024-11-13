@@ -329,6 +329,4 @@ function randomizeSliders() {
     checkSimilarity();
 }
 
-// Começar o jogo
-setNewTargetColor();
-startCountdown();
+
