@@ -57,7 +57,7 @@ body {
 }
 
 #target-color {
-    border-radius: 10px 0  0 10px;
+    border-radius: 10px 0 0 10px;
     border: 2px solid black;
     border-right: 0;
 }
@@ -206,7 +206,7 @@ input[type="range"]::-moz-range-thumb {
         flex-wrap: nowrap;
         height: 105px;
         width: 100%;
-       
+
         overflow-y: visible;
         overflow-x: hidden;
         justify-content: flex-start;
@@ -225,9 +225,9 @@ input[type="range"]::-moz-range-thumb {
 
     /* Personaliza a barra de rolagem inteira */
     #color-list::-webkit-scrollbar {
-    height: 0px;
-    width: 0px;
-}
+        height: 0px;
+        width: 0px;
+    }
 
     #color-list li {
         align-content: center;
@@ -237,15 +237,12 @@ input[type="range"]::-moz-range-thumb {
         display: flex;
         flex-direction: column;
         flex: 1;
-
     }
-
 
     .sliderselista {
         flex-direction: row;
         gap: 20px;
     }
-
 
     #target-color {
         border-radius: 0 0 0 10px;
@@ -253,15 +250,15 @@ input[type="range"]::-moz-range-thumb {
         border-right: 0;
         border-top: 0;
     }
-    
+
     #paint-area {
         border-radius: 0 0 10px 0;
         border: 2px solid black;
         border-left: 0;
         border-top: 0;
     }
-    
-    .doisblocos_cores{
+
+    .doisblocos_cores {
         margin-top: 0px;
     }
 }

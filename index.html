@@ -12,7 +12,17 @@
 </head>
 
 <body>
-    <div id="game">
+    <!-- Tela de Início -->
+    <div id="start-screen">
+        <h1>Bem-vindo ao HueBind</h1>
+        <p>Escolha o modo de dificuldade:</p>
+        <button id="easy">Fácil (1 minuto)</button>
+        <button id="medium">Médio (30 segundos)</button>
+        <button id="hard">Difícil (15 segundos)</button>
+    </div>
+
+      <!-- Tela do Jogo -->
+    <div id="game" style="display:none;">
 
         <div class="doisblocos_cores">
             <div id="target-color"></div>
@@ -21,7 +31,7 @@
 
         <div id="progress">
             <p>
-                <span><i class="fa-regular fa-clock"></i> <span id="timer">30s</span></span> <!-- Temporizador -->
+                <span><i class="fa-regular fa-clock"></i> <span id="timer"></span></span> <!-- Temporizador -->
                 <span><i class="fa-solid fa-check"></i> <span id="hits">0</span></span>
                 <span><i class="fa-solid fa-repeat"></i> <span id="attempts">0</span></span>
                 <span><i class="fa-solid fa-xmark"></i> <span id="target-color-changes">0</span></span>

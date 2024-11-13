@@ -17,12 +17,52 @@ let hits = 0;
 let attempts = 0;
 let movementCount = 0; // Contador de movimentos nas barras
 let countdown; // Armazena o intervalo do temporizador
-let timeRemaining = 30; // Tempo inicial em segundos
+let timeRemainingLimit = null; // Padrão: 30 segundos (modo médio)
+let timeRemaining = timeRemainingLimit; // Inicialize a variável timeRemaining
+
 let targetColorChanges = 0; // Contador de mudanças da cor alvo
 
 const targetColorChangesElement = document.getElementById("target-color-changes");
 let timerElement = document.getElementById("timer");
 const colorList = document.getElementById("color-list");
+
+
+const easyButton = document.getElementById("easy");
+const mediumButton = document.getElementById("medium");
+const hardButton = document.getElementById("hard");
+
+const startScreen = document.getElementById("start-screen");
+const gameScreen = document.getElementById("game");
+
+
+// Função para iniciar o jogo com o tempo de acordo com o modo escolhido
+function startGame() {
+    startScreen.style.display = "none";
+    gameScreen.style.display = "block";
+
+    // Atualiza imediatamente timeRemaining com o limite de tempo
+    timeRemaining = timeRemainingLimit;
+    updateTimer();  // Atualiza o display de tempo imediatamente
+
+    setNewTargetColor();
+    startCountdown();
+}
+
+// Funções para cada modo de dificuldade
+easyButton.addEventListener("click", () => {
+    timeRemainingLimit = 60; // 1 minuto
+    startGame();
+});
+
+mediumButton.addEventListener("click", () => {
+    timeRemainingLimit = 30; // 30 segundos
+    startGame();
+});
+
+hardButton.addEventListener("click", () => {
+    timeRemainingLimit = 15; // 15 segundos
+    startGame();
+});
 
 
 // Função para atualizar o background do slider de Hue com um gradiente arco-íris
@@ -209,24 +249,33 @@ function updateTimer() {
 // Função para reiniciar o temporizador para 30 segundos
 function resetTimer() {
     clearInterval(countdown); // Para o temporizador atual
-    timeRemaining = 30; // Reseta o tempo para 30 segundos
+    timeRemaining = timeRemainingLimit; // Reseta o tempo para o valor selecionado
     updateTimer(); // Atualiza o HTML
     startCountdown(); // Inicia o novo temporizador
 }
 
 // Função para iniciar o temporizador e fazer a contagem regressiva
 function startCountdown() {
-    countdown = setInterval(() => {
-        timeRemaining--;
-        updateTimer();
 
-        // Se o tempo acabar, muda automaticamente a cor alvo e reseta o temporizador
+
+    // Verifica se o temporizador já está em execução
+    if (countdown) {
+        clearInterval(countdown); // Limpa o intervalo anterior
+    }
+
+    countdown = setInterval(() => {
+        timeRemaining--;  // Decrementa o tempo
+
+        updateTimer();  // Atualiza o display do tempo restante
+
+        // Se o tempo acabar, muda a cor alvo automaticamente e reseta o temporizador
         if (timeRemaining <= 0) {
             autoChangeTargetColor(); // Muda a cor automaticamente
-            resetTimer(); // Reinicia o tempo para outro ciclo de 30 segundos
+            resetTimer(); // Reinicia o temporizador
         }
     }, 1000); // Atualiza a cada segundo
 }
+
 
 // Função para mudar a cor alvo automaticamente e contar a mudança
 function autoChangeTargetColor() {
