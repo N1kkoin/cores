@@ -162,7 +162,9 @@ input[type="range"]::-moz-range-thumb {
     list-style-type: none;
     padding: 0;
     text-wrap: wrap;
-
+    max-height: 105px;
+    height: fit-content;
+    overflow-y: auto;
 }
 
 #color-list li {
@@ -175,6 +177,7 @@ input[type="range"]::-moz-range-thumb {
     box-sizing: border-box;
     min-width: 90px;
     flex: 1;
+    height: fit-content;
 
 }
 
@@ -200,10 +203,19 @@ input[type="range"]::-moz-range-thumb {
         overflow-x: hidden;
         justify-content: flex-start;
         box-sizing: border-box;
-      
+
     }
 
-    #color-list li{
+    /* Personaliza a barra de rolagem em si */
+    #color-list::-webkit-scrollbar-thumb {
+        background: white;
+    }
+
+    #color-list::-webkit-scrollbar-thumb:hover {
+        background: white;
+    }
+
+    #color-list li {
         align-content: center;
     }
 
@@ -212,6 +224,10 @@ input[type="range"]::-moz-range-thumb {
         flex-direction: column;
         flex: 1;
 
+    }
+
+    #saved-colors{
+        margin-right: -12px;
     }
 
     .sliderselista {
