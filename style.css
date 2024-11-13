@@ -28,10 +28,14 @@
 
 body {
 
-    -webkit-user-select: none; /* Chrome, Safari */
-    -moz-user-select: none; /* Firefox */
-    -ms-user-select: none; /* IE */
-    user-select: none; /* Standard */
+    -webkit-user-select: none;
+    /* Chrome, Safari */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* IE */
+    user-select: none;
+    /* Standard */
 
     display: flex;
     justify-content: center;
@@ -169,6 +173,10 @@ input[type="range"]::-moz-range-thumb {
     border-radius: 5px;
     border: 2px solid black;
     text-transform: uppercase;
+    text-align: center;
+    box-sizing: border-box;
+    min-width: 90px;
+
 }
 
 .sliderselista {
@@ -182,7 +190,7 @@ input[type="range"]::-moz-range-thumb {
     #paint-area {
         height: 150px;
     }
-    
+
     #color-list {
         flex-direction: column;
         margin-top: 22px;

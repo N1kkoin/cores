@@ -150,6 +150,22 @@ function saveColor(color) {
     listItem.textContent = hexColor; // Mostra o código HEX em vez de HSL
     listItem.style.color = color.lightness > 50 ? "black" : "white"; // Ajusta a cor do texto para contraste
     
+
+    // Função para copiar o texto e exibir "copiado"
+    listItem.addEventListener('click', function() {
+        // Copia o texto para a área de transferência
+        navigator.clipboard.writeText(hexColor).then(() => {
+            // Temporariamente muda o texto para "copiado"
+            const originalText = listItem.textContent;
+            listItem.innerHTML = "<i class='fa-regular fa-copy'></i>";
+            setTimeout(() => {
+                listItem.textContent = originalText;
+            }, 1000); // Retorna ao texto original após 1 segundo
+        }).catch(err => {
+            console.error('Erro ao copiar para área de transferência: ', err);
+        });
+    });
+
     // Adiciona o item no início da lista
     colorList.prepend(listItem);
 }
