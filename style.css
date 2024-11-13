@@ -96,6 +96,7 @@ body {
     gap: 30px;
     margin-top: 0px;
     font-size: large;
+    font-weight: bold;
 }
 
 .doisblocos_cores {
@@ -216,6 +217,7 @@ input[type="range"]::-moz-range-thumb {
 }
 
 button {
+    font-family: "Titillium Web", sans-serif;
     border: 2px solid black;
     color: black;
     animation: changeBackgroundColor 10s infinite; /* Animação quando passar o mouse */
@@ -224,6 +226,7 @@ button {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease; 
+    font-weight: bold;
 }
 
 button:hover {
