@@ -150,10 +150,6 @@ input[type="range"]::-moz-range-thumb {
     margin-bottom: 0;
 }
 
-.hidden {
-    display: none;
-}
-
 #color-list {
     margin-top: 40px;
     display: flex;
@@ -162,9 +158,10 @@ input[type="range"]::-moz-range-thumb {
     justify-content: flex-start;
     width: 100%;
     height: 100%;
- justify-content: center;
+    justify-content: center;
     list-style-type: none;
     padding: 0;
+    text-wrap: wrap;
 
 }
 
@@ -176,7 +173,8 @@ input[type="range"]::-moz-range-thumb {
     text-transform: uppercase;
     text-align: center;
     box-sizing: border-box;
-   width: 90px;
+    min-width: 90px;
+    flex: 1;
 
 }
 
@@ -198,7 +196,7 @@ input[type="range"]::-moz-range-thumb {
         flex-wrap: nowrap;
         height: 105px;
         width: 100%;
-        overflow-y: auto;
+        overflow-y: show;
         overflow-x: hidden;
         justify-content: flex-start;
         box-sizing: border-box;
@@ -208,7 +206,7 @@ input[type="range"]::-moz-range-thumb {
         display: flex;
         flex-direction: column;
         flex: 1;
-      
+
     }
 
     .sliderselista {

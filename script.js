@@ -142,25 +142,8 @@ function hslToHex(h, s, l) {
     return `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)}`;
 }
 
-let isExpanded = false; // Variável de controle para o estado expandido
-const maxVisibleItems = 2; // Limite de itens visíveis
 const colorList = document.getElementById("color-list");
 const showMoreButton = document.getElementById("show-more");
-
-// Função para alternar a exibição dos itens extras
-showMoreButton.addEventListener("click", () => {
-    const allItems = colorList.querySelectorAll("li");
-    isExpanded = !isExpanded; // Alterna o estado de expansão
-
-    allItems.forEach((item, index) => {
-        if (index >= maxVisibleItems) {
-            item.classList.toggle("hidden", !isExpanded);
-        }
-    });
-
-    // Alterna o ícone do botão entre "+" e "-"
-    showMoreButton.innerHTML = isExpanded ? "<i class='fa-solid fa-minus'></i>" : "<i class='fa-solid fa-plus'></i>";
-});
 
 // Função para salvar a cor acertada e exibir na lista
 function saveColor(color) {
@@ -189,17 +172,6 @@ function saveColor(color) {
     // Adiciona o item no início da lista
     colorList.prepend(listItem);
 
-    // Controla a exibição do botão e a visibilidade dos itens
-    const items = colorList.querySelectorAll("li");
-    if (items.length > maxVisibleItems) {
-        items[maxVisibleItems].classList.add("hidden"); // Oculta o oitavo item e além
-        showMoreButton.style.display = "block"; // Mostra o botão "Ver mais"
-    }
-
-    // Se o estado estiver expandido, exibe todos os itens imediatamente
-    if (isExpanded) {
-        items.forEach(item => item.classList.remove("hidden"));
-    }
 }
 
 
