@@ -236,13 +236,6 @@ button:focus {
     /* Remove o contorno padrão do foco */
 }
 
-button:active {
-    background-color: #388e3c;
-    /* Cor de fundo ao clicar */
-    transform: scale(0.98);
-    /* Leve redução ao clicar */
-}
-
 /* Define a animação para a mudança de cor do fundo */
 @keyframes changeBackgroundColor {
     0% {
