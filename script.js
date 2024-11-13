@@ -34,11 +34,23 @@ const hardButton = document.getElementById("hard");
 const startScreen = document.getElementById("start-screen");
 const gameScreen = document.getElementById("game");
 
+// Background color /////
+
+// Seleciona os elementos
+const body = document.body;
+
+// Ao carregar a página ou ao exibir a tela de início, ativa a animação
+if (startScreen.style.display !== "none") {
+    body.classList.add("change-bg"); // Adiciona a animação
+}
 
 // Função para iniciar o jogo com o tempo de acordo com o modo escolhido
 function startGame() {
     startScreen.style.display = "none";
     gameScreen.style.display = "block";
+
+    body.classList.remove("change-bg"); // Remove a animação quando o jogo começar
+
 
     // Atualiza imediatamente timeRemaining com o limite de tempo
     timeRemaining = timeRemainingLimit;
@@ -328,5 +340,7 @@ function randomizeSliders() {
     // Atualiza a similaridade após reposicionar os sliders
     checkSimilarity();
 }
+
+
 
 

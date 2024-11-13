@@ -189,7 +189,104 @@ input[type="range"]::-moz-range-thumb {
     flex-direction: column;
 }
 
+/* start game -----------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+#start-screen {
+    width: 100%;
+    width: fit-content;
+    padding: 20px;
+    padding-top: 0;
+    box-sizing: border-box;
+    text-align: center;
+    background-color: white;
+    border-radius: 10px;
+    /* Bordas arredondadas */
+}
+
+.start-screen-buttons {
+    display: flex;
+    justify-content: center;
+}
+
+#start-screen h1 {
+    font-size: 2.5rem;
+    color: #4CAF50;
+    margin-bottom: 15px;
+}
+
+
+
+button {
+    border: 2px solid black;
+    color: black;
+    animation: changeBackgroundColor 10s infinite; /* Animação quando passar o mouse */
+    padding: 15px 20px;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin: 10px;
+}
+
+button:hover {
+    animation: changeBackgroundColor 1s infinite; /* Animação quando passar o mouse */
+
+}
+
+button:focus {
+    outline: none;
+    /* Remove o contorno padrão do foco */
+}
+
+button:active {
+    background-color: #388e3c;
+    /* Cor de fundo ao clicar */
+    transform: scale(0.98);
+    /* Leve redução ao clicar */
+}
+
+/* Define a animação para a mudança de cor do fundo */
+@keyframes changeBackgroundColor {
+    0% {
+        background-color: #ffcccc;
+    }
+
+    /* Começo (cor clara) */
+    25% {
+        background-color: #ffe600;
+    }
+
+    /* Cor intermediária */
+    50% {
+        background-color: #66ff66;
+    }
+
+    /* Cor intermediária */
+    75% {
+        background-color: #00b3e6;
+    }
+
+    /* Cor intermediária */
+    100% {
+        background-color: #ffcccc;
+    }
+
+    /* Volta à cor inicial */
+}
+
+/* Aplica a animação ao body quando o start-screen estiver visível */
+body.change-bg {
+    animation: changeBackgroundColor 10s infinite;
+    /* Duração de 10s, com repetição infinita */
+}
+
+/* media ----------------------------------------------------------------------------------------------------------------------------------------------- */
+
 @media (max-height: 500px) {
+
+    #start-screen {
+        border-radius: 0 0 10px 10px  ;
+    }
 
     body {
         height: fit-content;
