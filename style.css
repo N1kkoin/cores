@@ -27,7 +27,7 @@
 }
 
 body {
-
+    height: 100vh;
     -webkit-user-select: none;
     /* Chrome, Safari */
     -moz-user-select: none;
@@ -45,6 +45,7 @@ body {
     padding: 0;
     box-sizing: border-box;
     font-family: "Titillium Web", sans-serif;
+
 }
 
 #game {
@@ -55,6 +56,18 @@ body {
     box-sizing: border-box;
 }
 
+#target-color {
+    border-radius: 10px 0  0 10px;
+    border: 2px solid black;
+    border-right: 0;
+}
+
+#paint-area {
+    border-radius: 0 10px 10px 0;
+    border: 2px solid black;
+    border-left: 0;
+}
+
 #target-color,
 #paint-area {
     width: 100%;
@@ -62,19 +75,6 @@ body {
     margin-bottom: 10px;
 }
 
-#target-color {
-    border-radius: 0 0 0 10px;
-    border: 2px solid black;
-    border-right: 0;
-    border-top: 0;
-}
-
-#paint-area {
-    border-radius: 0 0 10px 0;
-    border: 2px solid black;
-    border-left: 0;
-    border-top: 0;
-}
 
 #target-color {
     background-color: #fff;
@@ -100,6 +100,8 @@ body {
 
 .doisblocos_cores {
     display: flex;
+    margin-top: 30px;
+
 }
 
 input[type="range"] {
@@ -189,6 +191,10 @@ input[type="range"]::-moz-range-thumb {
 
 @media (max-height: 500px) {
 
+    body {
+        height: fit-content;
+    }
+
     #target-color,
     #paint-area {
         height: 150px;
@@ -200,7 +206,8 @@ input[type="range"]::-moz-range-thumb {
         flex-wrap: nowrap;
         height: 105px;
         width: 100%;
-        overflow-y: show;
+       
+        overflow-y: visible;
         overflow-x: hidden;
         justify-content: flex-start;
         box-sizing: border-box;
@@ -216,6 +223,12 @@ input[type="range"]::-moz-range-thumb {
         background: white;
     }
 
+    /* Personaliza a barra de rolagem inteira */
+    #color-list::-webkit-scrollbar {
+    height: 0px;
+    width: 0px;
+}
+
     #color-list li {
         align-content: center;
     }
@@ -227,13 +240,28 @@ input[type="range"]::-moz-range-thumb {
 
     }
 
-    #saved-colors {
-        margin-right: -12px;
-    }
 
     .sliderselista {
         flex-direction: row;
         gap: 20px;
     }
 
+
+    #target-color {
+        border-radius: 0 0 0 10px;
+        border: 2px solid black;
+        border-right: 0;
+        border-top: 0;
+    }
+    
+    #paint-area {
+        border-radius: 0 0 10px 0;
+        border: 2px solid black;
+        border-left: 0;
+        border-top: 0;
+    }
+    
+    .doisblocos_cores{
+        margin-top: 0px;
+    }
 }
