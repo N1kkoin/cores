@@ -192,6 +192,19 @@ input[type="range"]::-moz-range-thumb {
 
 /* start game -----------------------------------------------------------------------------------------------------------------------------------------------------*/
 
+.logohuebind{
+   margin-bottom: 20px;
+    margin-top: 40px;
+}
+
+footer {
+    width: 100%;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    font-size: small;
+    color: #d0d0db;
+}
+
 #start-screen {
     width: 100%;
     width: fit-content;
@@ -220,17 +233,19 @@ button {
     font-family: "Titillium Web", sans-serif;
     border: 2px solid black;
     color: black;
-    animation: changeBackgroundColor 10s infinite; /* Animação quando passar o mouse */
+    animation: changeBackgroundColor 10s infinite;
+    /* Animação quando passar o mouse */
     padding: 15px 20px;
     font-size: 1.2rem;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease; 
+    transition: background-color 0.3s ease, transform 0.2s ease;
     font-weight: bold;
 }
 
 button:hover {
-    animation: changeBackgroundColor 1s infinite; /* Animação quando passar o mouse */
+    animation: changeBackgroundColor 1s infinite;
+    /* Animação quando passar o mouse */
 
 }
 
@@ -279,7 +294,7 @@ body.change-bg {
 @media (max-height: 500px) {
 
     #start-screen {
-        border-radius: 0 0 10px 10px  ;
+        border-radius: 0 0 10px 10px;
     }
 
     body {
